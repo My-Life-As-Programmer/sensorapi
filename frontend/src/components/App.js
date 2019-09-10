@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import ReactDom from "react-dom"
+import axios from "axios"
 
 import Header from "./layouts/Header"
 import Sdata from "./layouts/Sdata"
@@ -7,15 +8,16 @@ import Sdata from "./layouts/Sdata"
 class App extends Component{
   constructor(props){
     super(props)
-    let data = fetch('api/data/').then(response=>response.json()).then(data => data)
-    console.log(data)
-    this.store=[
+    this.state={
+      "data" : []
+    }
+    axios.get('api/data/').then(res => this.setState({ data:res.data}))
 
-    ]
   }
 
 
   render(){
+    console.log(this.state)
     return(
       <div className="container">
         <Header />
