@@ -3,6 +3,7 @@ import ReactDom from "react-dom"
 import axios from "axios"
 
 import Header from "./layouts/Header"
+import Chart from "./layouts/Chart"
 import Sdata from "./layouts/Sdata"
 
 class App extends Component{
@@ -11,17 +12,15 @@ class App extends Component{
     this.state={
       "data" : []
     }
-    axios.get('api/data/').then(res => this.setState({ data:res.data}))
-
   }
 
-
   render(){
-    console.log(this.state)
     return(
       <div className="container">
         <Header />
-        <Sdata />
+        <Chart endpoint='api/data' />
+        <Sdata endpoint='api/data' />
+
       </div>
     )
   }
