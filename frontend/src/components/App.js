@@ -5,19 +5,24 @@ import axios from "axios"
 import Header from "./layouts/Header"
 import Chart from "./layouts/Chart"
 import Sdata from "./layouts/Sdata"
+import Query from "./layouts/Query"
 
-class App extends Component{
+export default class App extends Component{
   constructor(props){
     super(props)
     this.state={
-      "data" : []
+      data : []
     }
   }
 
+
+
   render(){
+    console.log("in app.js render")
     return(
       <div className="container">
         <Header />
+        <Query />
         <Chart endpoint='api/data' />
         <Sdata endpoint='api/data' />
 

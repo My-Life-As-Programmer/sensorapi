@@ -39,7 +39,7 @@ export default class Chart extends Component{
     //console.log(timeLabel)
     return(
       <div style={{marginTop:"5em"}}>
-      
+
           <Line
             data={{
                   labels: timeLabel,
