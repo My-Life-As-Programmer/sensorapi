@@ -11,20 +11,37 @@ export default class App extends Component{
   constructor(props){
     super(props)
     this.state={
-      data : []
+      endpoint:"api/data/"
     }
   }
 
+  searchApi = (s,b,a) =>{
+    this.baseUrl = 'api/data/'
+    if(s!==""){
+      this.baseUrl=this.baseUrl+'?sensor='+s
+      console.log(this.baseUrl)
+      if(b!==""){
+          this.baseUrl=this.baseUrl+'&before='+b
+          console.log(this.baseUrl)
+      }
+      if(a!==""){
+        this.baseUrl=this.baseUrl+'&after='+a
+        console.log(this.baseUrl)
+      }
+    }
 
+    this.setState({
+                    endpoint:this.baseUrl
+                    })
+  }
 
   render(){
-    console.log("in app.js render")
     return(
       <div className="container">
         <Header />
-        <Query />
-        <Chart endpoint='api/data' />
-        <Sdata endpoint='api/data' />
+        <Query searchapi={this.searchApi}/>
+        <Chart endpoint={this.state.endpoint}/>
+        <Sdata endpoint={this.state.endpoint} />
 
       </div>
     )

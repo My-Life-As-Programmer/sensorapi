@@ -8,12 +8,30 @@ export default class Chart extends Component{
     this.state={
       labels: [],
       values: [],
-      sensor: ""
+      sensor: "",
+      loading: 0
     }
   }
 
   componentDidMount(){
-    axios.get(this.props.endpoint)
+    /*
+    let baseUrl=this.props.endpoint
+    console.log(baseUrl)
+    if(this.props.sen !== 0){
+      this.baseUrel= this.baseUrl+"?sensor="+this.props.sen
+      console.log(baseUrl)
+      if(this.props.bef !== 0){
+          this.baseUrel= this.baseUrl+"&before="+this.props.bef
+          console.log(baseUrl)
+      }
+      if(this.props.aft !== 0){
+          this.baseUrel= this.baseUrl+"&after="+this.props.aft
+          console.log(baseUrl)
+      }
+    }
+    let u ='api/data/?sensor='+this.props.sen*/
+    console.log("in did mount")
+    /*axios.get(this.props.endpoint)
           .then(res=>{
             let lb = res.data.map(dt=>dt.timestamp)
             let vl = res.data.map(dt=>dt.reading)
@@ -22,7 +40,8 @@ export default class Chart extends Component{
               values: res.data.map(dt=>dt.reading),
               sensor: res.data[0].sensorType
             })
-          })
+          })*/
+        this.updateState()
     }
 
 
@@ -33,10 +52,35 @@ export default class Chart extends Component{
     return fin
     }
 
+    updateState(){
+      if(this.props.endpoint==='api/data/'&&this.state.loading===1){
+      axios.get(this.props.endpoint)
+            .then(res=>{
+              this.setState({
+                labels: res.data.map(dt=>dt.timestamp),
+                values: res.data.map(dt=>dt.reading),
+                sensor: res.data[0].sensorType,
+                loading: 0
+              })
+            })}
+            else{
+              axios.get(this.props.endpoint)
+                    .then(res=>{
+                      this.setState({
+                        labels: res.data.map(dt=>dt.timestamp),
+                        values: res.data.map(dt=>dt.reading),
+                        sensor: res.data[0].sensorType,
+                        loading: 1
+                      })
+                    })
+            }
+
+    }
+
 
   render(){
     let timeLabel = this.convertTime(this.state.labels)
-    //console.log(timeLabel)
+    this.updateState()
     return(
       <div style={{marginTop:"5em"}}>
 

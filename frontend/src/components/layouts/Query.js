@@ -18,7 +18,12 @@ export default class Query extends Component{
 
   onsub = (e)=>{
     e.preventDefault()
-    console.log('clicked on submit')
+    this.props.searchapi(this.state.sensor,this.state.before,this.state.after)
+    this.setState({
+          sensor : "",
+          before : "",
+          after : ""
+        })
   }
 
   render(){

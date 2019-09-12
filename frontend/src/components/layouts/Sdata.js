@@ -15,16 +15,7 @@ export default class Sdata extends Component{
   }
 
   componentDidMount(){
-    axios.get(this.props.endpoint)
-          .then(res=>{
-            if(res.status!== 200){
-              return this.setState({placeholder: "something went wrong"})
-            }
-            this.setState({
-              data: res.data,
-              loaded: true
-            })
-          })
+    this.updateState()
   }
 
   convertTime =(data)=>{
@@ -33,9 +24,37 @@ export default class Sdata extends Component{
       return fin
     }
 
+    updateState(){
+      if(this.props.endpoint==='api/data/'&this.state.loaded===true){
+        axios.get(this.props.endpoint)
+              .then(res=>{
+                if(res.status!== 200){
+                  return this.setState({placeholder: "something went wrong"})
+                }
+                this.setState({
+                  data: res.data,
+                  loaded: false
+                })
+              })}
+            else{
+              axios.get(this.props.endpoint)
+                    .then(res=>{
+                      if(res.status!== 200){
+                        return this.setState({placeholder: "something went wrong"})
+                      }
+                      this.setState({
+                        data: res.data,
+                        loaded: true
+                      })
+                    })
+            }
+
+    }
+
   render(){
     const {data, loaded, placeholder} = this.state
-    let lst = data.map(dt => <tr><td>{this.convertTime(dt.timestamp)}</td><td>{dt.reading}</td><td>{dt.sensorType}</td></tr>)
+    let lst = data.map(dt => <tr ><td>{this.convertTime(dt.timestamp)}</td><td>{dt.reading}</td><td>{dt.sensorType}</td></tr>)
+    this.updateState()
 
     return(
       <div>

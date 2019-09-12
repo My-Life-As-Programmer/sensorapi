@@ -1,3 +1,10 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from .models import SensorData
 
-# Create your views here.
+def minmax(request):
+    context={
+    "minmax":'this is a json'
+    }
+
+    return JsonResponse(context)
