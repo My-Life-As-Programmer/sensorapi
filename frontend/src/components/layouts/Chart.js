@@ -28,7 +28,7 @@ export default class Chart extends Component{
 
     updateState(){
         if(this.props.endpoint==='api/data/'&&this.state.loading===1){
-              axios.get(this.props.endpoint+'?sensor=Temperature')
+              axios.get(this.props.endpoint)
                     .then(res=>{
                         this.setState({
                           labels: res.data.map(dt=>dt.timestamp),
