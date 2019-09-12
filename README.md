@@ -57,6 +57,6 @@ both these are divided into 2 separate Django apps as listed below
     to start the development server
     2.Go to the URL mentioned in the command window and you can see the Graph and Table for the data pushed from sensor
 
-##Images
+## Images
 
-Screenshots of the API are in the **images** folder
+  Screenshots of the API are in the **images** folder
