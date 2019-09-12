@@ -19,35 +19,36 @@ export default class Chart extends Component{
 
 
     convertTime =(data)=>{
-      let dateObj = data.map(dt => new Date(dt*1000))
-      let fin = dateObj.map(dt => {return dt.getDate()+"-"+dt.getMonth()+"-"+dt.getFullYear()+" "+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds()
-    })
-    return fin
-    }
+                          let dateObj = data.map(dt => new Date(dt*1000))
+                          let fin = dateObj.map(dt => {
+                                  return dt.getDate()+"-"+dt.getMonth()+"-"+dt.getFullYear()+" "+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds()
+                                  })
+                          return fin
+                          }
 
     updateState(){
-      if(this.props.endpoint==='api/data/'&&this.state.loading===1){
-      axios.get(this.props.endpoint)
-            .then(res=>{
-              this.setState({
-                labels: res.data.map(dt=>dt.timestamp),
-                values: res.data.map(dt=>dt.reading),
-                sensor: res.data[0].sensorType,
-                loading: 0
-              })
-            })}
-            else{
-              axios.get(this.props.endpoint)
+        if(this.props.endpoint==='api/data/'&&this.state.loading===1){
+              axios.get(this.props.endpoint+'?sensor=Temperature')
                     .then(res=>{
-                      this.setState({
-                        labels: res.data.map(dt=>dt.timestamp),
-                        values: res.data.map(dt=>dt.reading),
-                        sensor: res.data[0].sensorType,
-                        loading: 1
+                        this.setState({
+                          labels: res.data.map(dt=>dt.timestamp),
+                          values: res.data.map(dt=>dt.reading),
+                          sensor: res.data[0].sensorType,
+                          loading: 0
+                          })
                       })
-                    })
-            }
-
+        }
+        else{
+          axios.get(this.props.endpoint)
+                .then(res=>{
+                    this.setState({
+                      labels: res.data.map(dt=>dt.timestamp),
+                      values: res.data.map(dt=>dt.reading),
+                      sensor: res.data[0].sensorType,
+                      loading: 1
+                      })
+                  })
+        }
     }
 
 

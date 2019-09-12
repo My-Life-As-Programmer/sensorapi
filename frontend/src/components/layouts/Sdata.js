@@ -26,7 +26,7 @@ export default class Sdata extends Component{
 
     updateState(){
       if(this.props.endpoint==='api/data/'&this.state.loaded===true){
-        axios.get(this.props.endpoint)
+        axios.get(this.props.endpoint+'?sensor=Temperature')
               .then(res=>{
                 if(res.status!== 200){
                   return this.setState({placeholder: "something went wrong"})
