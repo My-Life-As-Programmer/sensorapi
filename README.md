@@ -38,20 +38,23 @@ both these are divided into 2 separate Django apps as listed below
 
 ## Install
 
-*First install the Node Package Manager in your system and then go to the root directory '/sensorapi/' where you can see the package.json and then hit ```javascript npm install``` to install the Dependency Node Modules
+* First install the Node Package Manager in your system and then go to the root directory '/sensorapi/' where you can see the package.json and then hit ```npm install``` to install the Dependency Node Modules
 
-*Once these are installed run the build script by typing ```javascript npm run build``` and hitting enter to create the **main.js** file which contains all our static compiled javascript from webpack
+* Once these are installed run the build script by typing ```npm run build``` and hitting enter to create the **main.js** file which contains all our static compiled javascript from webpack
 
-*After this please install the required Django and Django Rest Framework and anyother required libraries from **requirements.txt** by running
-```Python
+* After this please install the required Django and Django Rest Framework and anyother required libraries from **requirements.txt** by running
+
+```
     pip install -r requirements.txt
 ```
 
-
-*Now you can deploy this Project in any Server or you can run it on the Django development server for testing
+* Now you can deploy this Project in any Server or you can run it on the Django development server for testing
 
     1.While still in the 'sensorapi/' folder where you can see the 'manage.py' file run
-    '''python python manage.py ruunserver ``` to start the development server
+    ```
+    manage.py ruunserver
+    ```
+    to start the development server
     2.Go to the URL mentioned in the command window and you can see the Graph and Table for the data pushed from sensor
 
 ##Images
