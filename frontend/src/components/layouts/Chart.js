@@ -14,35 +14,8 @@ export default class Chart extends Component{
   }
 
   componentDidMount(){
-    /*
-    let baseUrl=this.props.endpoint
-    console.log(baseUrl)
-    if(this.props.sen !== 0){
-      this.baseUrel= this.baseUrl+"?sensor="+this.props.sen
-      console.log(baseUrl)
-      if(this.props.bef !== 0){
-          this.baseUrel= this.baseUrl+"&before="+this.props.bef
-          console.log(baseUrl)
-      }
-      if(this.props.aft !== 0){
-          this.baseUrel= this.baseUrl+"&after="+this.props.aft
-          console.log(baseUrl)
-      }
-    }
-    let u ='api/data/?sensor='+this.props.sen*/
-    console.log("in did mount")
-    /*axios.get(this.props.endpoint)
-          .then(res=>{
-            let lb = res.data.map(dt=>dt.timestamp)
-            let vl = res.data.map(dt=>dt.reading)
-            this.setState({
-              labels: res.data.map(dt=>dt.timestamp),
-              values: res.data.map(dt=>dt.reading),
-              sensor: res.data[0].sensorType
-            })
-          })*/
-        this.updateState()
-    }
+                      this.updateState()
+                      }
 
 
     convertTime =(data)=>{
